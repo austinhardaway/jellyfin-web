@@ -263,7 +263,7 @@ function addSeriesProductionYearInfo(
                 )
             });
         } else {
-            addproductionYearWithEndDate(
+            addProductionYearWithEndDate(
                 itemProductionYear,
                 itemEndDate,
                 addMiscInfo
@@ -272,7 +272,7 @@ function addSeriesProductionYearInfo(
     }
 }
 
-function addproductionYearWithEndDate(
+function addProductionYearWithEndDate(
     itemProductionYear: number,
     itemEndDate: NullableString,
     addMiscInfo: (val: MiscInfo) => void
