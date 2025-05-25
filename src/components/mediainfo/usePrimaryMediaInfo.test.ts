@@ -1,12 +1,22 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, beforeAll } from 'vitest';
 import usePrimaryMediaInfo from './usePrimaryMediaInfo';
 import { renderHook } from '@testing-library/react';
+import itemHelper from 'components/itemHelper';
+
+
 
 vi.mock('../itemHelper', () => ({
-    getDisplayName: vi.fn().mockReturnValue('Test Item')
+    default: {
+        getDisplayName: vi.fn().mockReturnValue('Test Name')
+    }
 }))
 
 describe('usePrimaryMediaInfo', () => {
+
+    beforeEach(()=> {
+        vi.clearAllMocks();
+    })
+
     it('should return an empty array when no options are enabled', () => {
         const item = {
             Type: 'Movie',
@@ -110,6 +120,24 @@ describe('usePrimaryMediaInfo', () => {
         expect(result.current).toEqual([{ text: '1/1/2021' }]);
     });
 
+    it('should include ProgramIndicators when showEpisodeTitle info is true',  () => {
+        const item = {
+            Type: 'Program',
+            MediaType: 'Video',
+            IsSeries: true,
+            EpisodeTitle: 'Test Episode',
+        } as any;
+        
+        vi.spyOn(itemHelper, 'getDisplayName').mockReturnValue('Test Episode');
+
+        const { result } = renderHook(() => usePrimaryMediaInfo({ item, showProgramIndicatorInfo: false,  showEpisodeTitleInfo: true}))
+        expect(result.current).toEqual([{ text: 'Test Episode'}]);
+        vi.clearAllMocks()
+    })
+
+
+
+    
 
     it('should include year info when showYearInfo is true', () => {
         const item = {

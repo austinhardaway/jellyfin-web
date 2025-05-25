@@ -12,6 +12,7 @@ import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { toApi } from 'utils/jellyfin-apiclient/compat';
 
 export function getDisplayName(item, options = {}) {
+    console.log('Calling getDisplayName with item:', item);
     if (!item) {
         throw new Error('null item passed into getDisplayName');
     }

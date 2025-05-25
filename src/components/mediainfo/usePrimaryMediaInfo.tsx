@@ -518,11 +518,11 @@ function usePrimaryMediaInfo({
     );
 
     addProgramIndicators(
-        showProgramIndicatorInfo,
-        showEpisodeTitleInfo,
-        includeEpisodeTitleIndexNumber,
-        showOriginalAirDateInfo,
         showYearInfo,
+        showEpisodeTitleInfo,
+        showOriginalAirDateInfo,
+        showProgramIndicatorInfo,
+        includeEpisodeTitleIndexNumber,
         item,
         addMiscInfo
     );
